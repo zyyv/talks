@@ -20,13 +20,13 @@ function linkTo(link: string) {
 </script>
 
 <template>
-  <div grid="~ cols-5" gap-8 w-fit ma mt-10>
+  <div v-click="1" grid="~ cols-5" gap-8 w-fit ma mt-10>
     <div
-      v-for="{ name, icon, link } in Intergrations" :key="name"
-      bg-gray-950
-      w-30 h-30 rd-4 flex flex-col items-center justify-center gap-2 b
-      b-transparent
-      hover:b="$vp-c-brand" transition cursor-pointer
+      v-for="({ name, icon, link }) in Intergrations" :key="name"
+      bg-gray-950 w-30 h-30 rd-4 flex flex-col items-center justify-center gap-2
+      b
+      b-transparent hover:b="$vp-c-brand" transition
+      cursor-pointer
       @click="linkTo(link)"
     >
       <div text-10 :class="icon" />

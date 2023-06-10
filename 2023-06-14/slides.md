@@ -85,6 +85,8 @@ growSize: 1.5
 
 # Features
 
+<v-clicks>
+
 - 完全可定制 - 没有核心实用程序，所有功能都是通过预设提供的
 - 没有解析，没有 AST，没有扫描，它是即时的（比 Windi CSS 或 Tailwind JIT 快 5 倍）
 - ~6kb min+brotli - 零依赖和浏览器友好
@@ -96,6 +98,8 @@ growSize: 1.5
 - Inspector - 以交互方式检查和调试
 - CSS-in-JS Runtime - 使用 UnoCSS 和一行 CDN 导入
 - VS Code 扩展
+
+</v-clicks>
 
 ---
 layout: default
@@ -109,19 +113,116 @@ UnoCSS 集成了各种框架/工具：
 
 <Integrations />
 
+<p v-click='2'>
+
 你可以在 [https://unocss.dev/guide/#examples](https://unocss.dev/guide/#examples) 上在线试玩
 
+</p>
+
 ---
-layout: center
+layout: default
 growX: 50
-growY: 0
+growY: 100
 growSize: 1.5
-clicks: 4
+clicks: 5
 ---
 
-<h1 class="text-5xl!" v-click="1" w-200>I <span transition-all duration-300 :class="$slidev.nav.clicks === 4 ? 'line-through op50' : ''">do</span> <span v-click="4">try to</span></h1>
-<h1 class="text-5xl! font-bold" v-click="2">Inbox-Zero</h1>
-<h1 class="text-5xl!" v-click="3">Everyday</h1>
+# 如何使用
+
+<div v-show="$slidev.nav.clicks < 1" bg="[url(/howToUse.png)]" w-50 h-50 bg-cover absolute right-10 top-10 animate-pulse /> 
+
+<div flex children-flex-1 gap-10 v-click='1' v-show="$slidev.nav.clicks === 1" >
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import UnoCSS from 'unocss/vite'
+
+export default defineConfig({
+  plugins: [
+    UnoCSS(),
+  ]
+})
+```
+
+
+```ts
+// uno.config.ts
+import { 
+  defineConfig,
+  presetUno,
+  presetAttributify,
+  PresetIcons,
+} from 'unocss'
+
+export default defineConfig({
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    PresetIcons(),
+  ]
+})
+```
+
+```ts
+// main.ts
+import "uno.css"
+
+// 样式重置（可选）
+import "@unocss/reset/tailwind.css" 
+```
+
+</div>
+
+<div v-click='2'>
+Demo 展示
+</div>
+
+<div flex children-flex-1 gap-10>
+
+
+<div v-click='3'>
+
+```html
+<!-- Button Componetent -->
+<template>
+  <button 
+    w-full h-12 rounded transition duration-350
+    hover-bg-op-90
+    active="op-80 scale-105"
+  >
+    <slot />
+  </button>
+</template>
+```
+
+</div>
+
+<div v-click='4'>
+
+```html
+<template>
+  <div flex="~ items-center" children-flex-1>
+    <Button bg="#d5001c" text-white>Pursche</Button>
+    <Button 
+      b="~ #d5001c" text="#d5001c" bg-white
+      hover="bg-#d5001c text-white"
+    >
+      Pursche
+    </Button>
+  </div>
+</template>
+```
+
+</div>
+
+</div>
+
+<div v-click='5' mt-10 px-6 py-4 b="~ $vp-c-brand" rd-xl h-fit bg-white bg-op-400>
+  
+  <BaseUseDemo /> 
+
+</div>
 
 
 ---
