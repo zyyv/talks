@@ -73,8 +73,7 @@ watchEffect(() => {
   <span
     absolute pointer-events-none rounded-full z-100 mix-blend-plus-lighter
     bg-gradient-to-r shape="[-45deg]" from="$vp-c-brand" to="#009ff7"
-    op75 dark:op50
-    :class="transitionClass"
+    :class="[transitionClass, currentRoute.path !== '1' ? 'op75 dark:op50' : '!op-0']"
     :style="{
       top: `${top}%`,
       left: `${left}%`,
