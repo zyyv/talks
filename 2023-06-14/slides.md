@@ -16,9 +16,8 @@ growSize: 1.5
 <div flex="~ gap3" items-center c="$vp-c-brand">最佳实践</div>
 </h1>
 <div flex justify-center items-center relative>
-  <div id="logo" absolute top='1/2' left='1/2' translate='-1/2'  w-60 h-60 
-bg-gradient-to-r shape="[-45deg]" from="$vp-c-brand" to="#009ff7" blur-120px rd-full>
-    
+  <div id="logo" absolute top='1/2' left='1/2' translate='-1/2'  w-60 h-60  hover-op-0 transition duration-1000
+bg-gradient-to-r shape="[-45deg]" from="$vp-c-brand" to="#009ff7" blur-120px rd-full> 
   </div>
   <div text-40 i-logos-unocss />
 </div>
@@ -41,26 +40,24 @@ growY: 90
 style: 'padding-left: 8rem;'
 ---
 
-# Anthony Fu
+# Chris
 
 <div class="leading-10 opacity-80">
-Core team member of Vue, Vite and Nuxt.<br>
-Creator of VueUse, Vitest, UnoCSS, Slidev and Elk.<br>
-Working at NuxtLabs.<br>
+Team member of UnoCSS, Elk<sub bottom-0 ml-1>farm</sub>.<br>
+Creator of Onu UI.<br>
+Vite、Vue、Nuxt etc. ecological contributors.<br>
 </div>
 
 <div my-10 w-min flex="~ gap-1" items-center justify-center>
   <div i-ri-user-3-line op50 ma text-xl/>
-  <div><a href="https://antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div><a href="https://zyob.top" target="_blank" class="border-none! font-300">zyob.top</a></div>
   <div i-ri-github-line op50 ma text-xl ml4/>
-  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">antfu</a></div>
-  <div i-ri-mastodon-line op50 ma text-xl ml4/>
-  <div><a href="https://m.webtoo.ls/@antfu" target="_blank" class="border-none! font-300">antfu@webtoo.ls</a></div>
+  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">zyyv</a></div>
   <div i-ri-twitter-line op50 ma text-xl ml4/>
-  <div><a href="https://twitter.com/antfu7" target="_blank" class="border-none! font-300">antfu7</a></div>
+  <div><a href="https://twitter.com/chris_zyyv" target="_blank" class="border-none! font-300">chris_zyyv</a></div>
 </div>
 
-<img src="https://antfu.me/avatar.png" rounded-full w-35 abs-tr mt-32 mr-40/>
+<img src="https://avatars.githubusercontent.com/u/42139754?v=4" rounded-full w-35 abs-tr mt-32 mr-40/>
 
 <div flex="~ gap2">
 
@@ -68,10 +65,16 @@ Working at NuxtLabs.<br>
 
 ---
 layout: quote
-class: text-center
 ---
 
-# Notification-driven Development
+# What is UnoCSS ?
+
+<!-- <v-clicks> -->
+
+- [Reimagine Atomic CSS](https://antfu.me/posts/reimagine-atomic-css-zh)
+- [Why UnoCSS](https://unocss.dev/guide/why)
+
+<!-- </v-clicks> -->
 
 ---
 layout: center
@@ -80,18 +83,33 @@ growY: 120
 growSize: 1.5
 ---
 
-<h1 class="text-5xl!" w-200>I Get</h1>
-<h1 class="text-5xl!">A Lot of Notifications</h1>
-<h1 class="text-5xl! font-bold">Everyday</h1>
+# Features
+
+- 完全可定制 - 没有核心实用程序，所有功能都是通过预设提供的
+- 没有解析，没有 AST，没有扫描，它是即时的（比 Windi CSS 或 Tailwind JIT 快 5 倍）
+- ~6kb min+brotli - 零依赖和浏览器友好
+- Cli、快捷方式、变体组、基于打包工具的转换器
+- 属性模式 - 在属性中对实用程序进行分组
+- 纯 CSS 图标- 将任何图标用作单个类
+- CSS 指令 - 在 CSS 中使用 @apply、@screen、theme() 指令重用 utils
+- 编译模式 — 在构建时将多个类合成一个
+- Inspector - 以交互方式检查和调试
+- CSS-in-JS Runtime - 使用 UnoCSS 和一行 CDN 导入
+- VS Code 扩展
 
 ---
-layout: center
+layout: default
 growX: -10
 growY: 50
 growSize: 0.75
 ---
+# 社区集成
 
-<img src="/notifications-count.png" w-100 mix-blend-lighten filter-contrast-120 />
+UnoCSS 集成了各种框架/工具：
+
+<Integrations />
+
+你可以在 [https://unocss.dev/guide/#examples](https://unocss.dev/guide/#examples) 上在线试玩
 
 ---
 layout: center
