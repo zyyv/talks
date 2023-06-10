@@ -1,6 +1,10 @@
 import { defineConfig } from 'unocss'
+import { presetUseful } from 'unocss-preset-useful'
 
 export default defineConfig({
+  presets: [
+    presetUseful() as any,
+  ],
   shortcuts: [
     ['btn', 'py-2 px-4 font-semibold rounded-lg shadow-md'],
     ['btn-green', 'text-white bg-green-500 hover:bg-green-700'],
