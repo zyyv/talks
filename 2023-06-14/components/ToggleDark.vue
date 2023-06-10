@@ -6,7 +6,7 @@ import { isDark, toggleDark } from '../composables/useDark'
   <button
     bg-inherit
     border-none
-    @click="toggleDark()"
+    @click="toggleDark"
   >
     <div
       v-if="!isDark"
