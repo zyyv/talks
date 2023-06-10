@@ -231,56 +231,295 @@ growX: 0
 growY: 50
 ---
 
-<h1 class="text-4xl!">What Does Empty Inbox Looks Like?</h1>
+<h1 class="text-4xl!">～ 纵享丝滑 ～ ？</h1>
+
+<div bg="[url(/smooth.png)] cover" w-40 h-40 absolute left='1/2' translate="x--1/2" mt-4></div>
 
 ---
-layout: center
+layout: two-cols
 growX: -10
 growY: -10
-class: text-center
+clicks: 4
 ---
 
-<img src="https://github.githubassets.com/images/modules/notifications/inbox-zero-dark.svg" />
+# Rules
+Uno 大多数的工作能力取决于你的规则
 
-<h4 mt-6 mb--4 font-bold>All caught up!</h4>
-<p op50 text-sm>
-Take a break, write some code, do what you do best.
+<div class="number-bg">R</div>
+
+<v-clicks>
+
+- Static Rules 静态规则
+- Dynamic Rules 动态规则
+- 规则优先级
+- 高级用法
+
+</v-clicks>
+
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+
+```ts
+{
+  rules: [
+    ['flex', { display: 'flex' }],
+    ['inline-flex', { display: 'inline-flex' }],
+    ['flex-inline', { display: 'inline-flex' }],
+    // ...
+  ]
+}
+```
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 2">
+
+```ts
+{
+  rules: [
+    [/^m-(\d+)$/, ([, d]) => ({ margin: `${d / 4}rem` })],
+    [/^p-(\d+)$/, match => ({ padding: `${match[1] / 4}rem` })],
+  ]
+}
+```
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 3">
+<p mb-4>解析规则时，规则顺序排名靠后的优先级越高！</p>
+
+```ts
+{
+  rules: [
+    [/^m-(.*)$/, ([, d]) => ({ margin: d })],
+    [/^m-(\d+)$/, ([, d]) => ({ margin: `${d / 4}rem` })],
+    // ...
+  ]
+}
+```
+
+<p font-mono>
+
+-> [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIC2BaAjABnQD4AoE4AenAlKA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmcAvnOlBCHAOQCuWEAxgM6u0BQnqAHpLBQYAhvQA28NJhz5CwIgAoEnOHCjjUrAFxwA2itV6A9AD0QAWgUA6AFQBKACRGANHAW7XyALp24AXgA%2BNyQQYSgibB1kMjsvZwNVXVMLBQAdZABqRxc3DxQffyClOFDwyLgAAwcEaKM4ABZSKFQQCpi4gw7SO04gA&css=Q&options=N4XyA)
+
 </p>
 
+</div>
+
+<div v-show="$slidev.nav.clicks === 4" font-mono>
+
+大多时候你不会用到，除非真的有除非🤣。仅做了解
+
+-> [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIBmB7b6B8AUFFKJLIihjAK5IAu2AtgLT0CmDBAwnY01ABKNOJ2AB6cBCIky0eMjToAhLQbM2negQCSAOwgI4YEFF7qBw0UglSityESA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHDBAKIDOAxgIZirIDKqANqrRVHAL5x0UCCDgByAK5YItatTEAoBagAekWCgz0J7eGkw58hYEQAUCBXDhQdqagC44AbUtXnrt3AD0APVoTqChAAWlMAOgBqAEoAEi8SDzdTJzIsehBUAF0yJCh6AHc2Tm5oMn8oKFQsGCKuHjIAN3ooYHpqgAk25E4oajIYAAtUDP4ouABeAD5ERM8vLxRgOmbkOBAlkHoYWiHVm05qWbdgdDhTNIyw7Fp2CTRqUzFqEVRB7CIxKLHKmAkoLCUnjmCxOcAAnhAJHB8m0YGQIVCGFhFtR6AAjTjkIZwJotWHUQTQLFLay2I5WUGmXGtDpdHrUMKcLBEQbfV5-AFAty0AiBODUDh1InjchUZZMViCkpQUx5QpSnhRcneBY-Dlwej8mAtZlwbCBVD0VYQU5tOAQNEAKzqyrV-zgAAMFDEEALijwBBYrOgCDBgtRgAAvVCOF2DYaoMI%2B6osIOR6ggPgAbgUfAUXgAVODIXAkXABvQGqg1joYMAwJj9nY4BmvM7XQroHx7PZ6OgYKheF7c76qjBHGI2x2oGIU2moxAIHBpi63UKoJ7XDz2NBHJVkGP01miRlkK04ABHCSd4DV2sKAACu-3pnWWGC%2BWAyEGoYQ4cuaMq9AA1pBsDAGQTPgxm7WdGwXGZPGjP0A2DV930jaDY2DMIgJTKw0zTJ0uT4BJPGyVwCOAhQgA&css=Q&options=N4XyA)
+
+</div>
+
 ---
-layout: center
+layout: two-cols
 growX: 50
 growY: 0
 ---
 
-# Why Inbox-Zero?
+# Shortcuts
+你可以包装使用 Shortcut 来简化你的原子化 CSS<br/>
+就像书写 class='xxx' 那么简单
+
+<div class="number-bg">S</div>
 
 <v-clicks>
 
-- Being responsive
-- Keep maintenance work in control
-- Don't accumulate work
-- Know what to focus on
+- Static Shortcuts 静态快捷方式
+- Dynamic Shortcuts 动态态快捷方式
+- Nested Shortcuts 嵌套快捷方式
+- ExpandGroup
+- Tips
 
 </v-clicks>
 
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+
+```ts
+{
+  shortcuts: {
+    'btn': 'py-2 px-4 font-semibold rounded-lg shadow-md',
+    'btn-green': 'text-white bg-green-500 hover:bg-green-700',
+  }
+}
+```
+<br/>
+```html
+<button btn btn-green w-fit>Button</button>
+```
+<br/>
+<button btn btn-green w-fit>Button</button>
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 2">
+
+```ts
+{
+  shortcuts: [
+    [/^btn-(.*)$/, ([, c]) => `bg-${c}-400 text-${c}-100 py-2 px-4 rounded-lg`],
+  ]
+}
+```
+
+<br/>
+
+```html
+<button btn-red w-fit>Button</button>
+<button btn-teal w-fit>Button</button>
+<button btn-blue w-fit>Button</button>
+```
+
+<br/>
+
+<div space-x-2>
+<button btn-red w-fit>Button</button>
+<button btn-teal w-fit>Button</button>
+<button btn-blue w-fit>Button</button>
+</div>
+
+</div>
+
+
+<div v-show="$slidev.nav.clicks === 3">
+
+```ts
+{
+  shortcuts: [
+    ['btn', 'py-2 px-4 font-semibold rounded-lg shadow-md',]
+    [/^btn-(.*)$/, ([, c]) => `btn bg-${c}-400 text-${c}-100`],
+  ]
+}
+```
+
+<br/>
+
+```html
+<button btn-red w-fit>Button</button>
+<button btn-teal w-fit>Button</button>
+<button btn-blue w-fit>Button</button>
+```
+
+<br/>
+
+<div space-x-2>
+<button btn-red w-fit>Button</button>
+<button btn-teal w-fit>Button</button>
+<button btn-blue w-fit>Button</button>
+</div>
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 4">
+
+```ts
+{
+  shortcuts: [
+    ['btn', 'py-2 px-4 font-semibold rounded-lg shadow-md',]
+    [/^btn-(.*)$/, ([, c]) => `hover-(bg-black b-(~ ${c}) text-(${c} xl))  btn bg-${c}-400 text-${c}-100`],
+  ]
+}
+```
+
+<br/>
+
+```html
+<button btn-red w-fit>Button</button>
+<button btn-teal w-fit>Button</button>
+<button btn-blue w-fit>Button</button>
+```
+
+<br/>
+
+<div space-x-2>
+<button btn-expand-red w-fit>Button</button>
+<button btn-expand-teal w-fit>Button</button>
+<button btn-expand-blue w-fit>Button</button>
+</div>
+
+</div>
+
+<div v-show="$slidev.nav.clicks >=  5">
+
+```ts {all|2-3|5-20|6-11|13-18|23-24|33} {maxHeight:'400px'}
+async expandShortcut(input: string, context: RuleContext<Theme>, depth = 5): Promise<[ShortcutValue[], RuleMeta | undefined] | undefined> {
+    if (depth === 0)
+      return
+
+    for (const s of config.shortcuts) {
+      if (isStaticShortcut(s)) {
+        if (s[0] === input) {
+          result = s[1]
+          break
+        }
+      }
+      else {
+        const match = input.match(s[0])
+        if (match)
+          result = s[1](match, context)
+        if (result) {
+          break
+        }
+      }
+    }
+
+    // expand nested shortcuts
+    if (isString(result))
+      result = expandVariantGroup(result.trim()).split(/\s+/g)
+
+    if (!result)
+      return
+
+    return [
+      (await Promise.all(result.map(async r =>
+        (
+          isString(r)
+            ? (await this.expandShortcut(r, context, depth - 1))?.[0]
+            : undefined
+        ) || [r],
+      )))
+        .flat(1)
+        .filter(Boolean),
+    ]
+  }
+```
+
+</div>
+
 ---
-layout: fact
+layout: two-cols
 growX: 50
 growY: 0
 growSize: 1.5
 ---
 
-# Reduce Notifications Created
-contribution guide, issue form/templates, etc
+# Variant
+你可以使用 Variant 来增强你的规则<br/>
+例如：`hover:` `dark:` etc.
 
-<div class="number-bg">0</div>
+<div class="number-bg">V</div>
+
+<v-clicks>
+
+- Normal variant 普通变体
+- Nested variant 嵌套变体
+- Separator 分割符
+- Sort 排序
+- Tips
+
+</v-clicks>
+
 
 ---
 
 # <span font-mono>.github</span> Magic Repo
 
-<img src="/dot-github-repo.png" w-100 rounded-md border="~ main" />
 
 
 ---
@@ -319,8 +558,6 @@ layout: center
 
   - Use GitHub Notifications Inbox
 
-  - Or try [volta.net](https://volta.net) <Volta h-4 inline-block ml1 />
-
 </v-clicks>
 
 
@@ -342,9 +579,7 @@ growY: -10
 clicks: 2
 ---
 
-<img absolute left-10 top-10 v-click="0" src="/notifications-raw.png" w-150 mix-blend-plus-lighter />
 <Arrow x1="600" y1="200" x2="550" y2="75" text-lime shadow v-if="$slidev.nav.clicks === 1" />
-<img absolute left-10 top-10 v-click="2" src="/notifications-grouped.png" w-150 />
 
 
 ---
@@ -393,8 +628,6 @@ growX: 110
 growY: 110
 ---
 
-<img absolute left-10 top-10 src="/notifications-grouped.png" w-150 />
-<img absolute left-10 top-10 v-click src="/notifications-refined.png" w-150 />
 
 <div absolute left-165 right-5 top-20>
 <v-clicks>
