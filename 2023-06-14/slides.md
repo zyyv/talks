@@ -501,6 +501,7 @@ growSize: 1.5
 
 # Variant
 你可以使用 Variant 来增强你的规则<br/>
+输出你想要的 CSS<br/>
 例如：`hover:` `dark:` etc.
 
 <div class="number-bg">V</div>
@@ -510,17 +511,260 @@ growSize: 1.5
 - Normal variant 普通变体
 - Nested variant 嵌套变体
 - Separator 分割符
-- Sort 排序
-- Tips
+- Custom
 
 </v-clicks>
 
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+
+在 Uno 预设中，它内置了多个变体，兼容&对齐 `tailwind` `windi`<br/>
+基于其灵活提取能力，它更像是一个 `超集`
+
+##### Usage
+
+```html
+<div class="text-red hover-text-blue">Hover Me!</div>
+```
+```css
+/* Output */
+.text-red{--un-text-opacity:1;color:rgba(248,113,113,var(--un-text-opacity));}
+.hover-text-blue:hover{--un-text-opacity:1;color:rgba(96,165,250,var(--un-text-opacity));}
+```
+
+<div class="text-red hover-text-blue">Hover Me!</div>
+
+<br/>
+
+```html
+<div class="text-red dark:text-teal">Dark Mode</div>
+```
+
+```css
+/* Output */
+.dark .dark\:text-teal{--un-text-opacity:1;color:rgba(45,212,191,var(--un-text-opacity));}
+.text-red{--un-text-opacity:1;color:rgba(248,113,113,var(--un-text-opacity));}
+```
+
+<div class="text-red dark:text-teal">Dark Mode</div>
+
+</div>
+
+
+<div v-show="$slidev.nav.clicks === 2">
+
+Uno 允许你在书写规则是，嵌套变体使用<br/>
+`variantA:variantB:···:rules`<br/>
+
+##### Usage
+
+```html
+<div class="hover:dark:important:text-teal">Hover Me!</div>
+```
+
+```css
+/* Output */
+.hover\:dark\:text-teal:hover{--un-text-opacity:1 !important;color:rgba(45,212,191,var(--un-text-opacity)) !important;}
+```
+
+<div class="hover:dark:important-text-teal">Hover Me!</div>
+
+<div>
+
+<div px-4 py-2 rd b='~ #d97706' mt-6 text-14px c="#d97706">
+
+  <h5 font-bold>Warning</h5>
+
+  <p important-m1>过多 Variant 嵌套的使用，会导致规则的复杂度增加，难以阅读<br/>
+  也会增加解析成本，所以不建议使用过多的嵌套<br/></p>
+</div>
+
+当你 Variants 超过500个时，便会得到以下警告
+
+<p text-10px>哈哈，应该没有人会这么写吧😅</p>
+
+```ts
+if (handlers.length > 500)
+        throw new Error(`Too many variants applied to "${raw}"`)
+```
+
+</div>
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 3">
+
+Uno 现在对分隔符对方开放，可以自定义<br/>
+```ts
+/**
+   * Variant separator
+   *
+   * @default [':', '-']
+   */
+  separators?: Arrayable<string>
+```
+
+##### Usage
+
+```html
+<input class="hover-text-red focus:text-teal" />
+```
+
+##### 自定义分隔符
+
+```ts
+// uno.config.ts
+import { defineConfig } from 'uno'
+
+export default defineConfig({
+  separators: ['_'],
+})
+```
+
+```html
+<input class="hover_text-red focus_text-teal" />
+```
+
+<input b b-gray class="hover_text-red focus_text-teal" />
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 4">
+
+简单尝试一下吧～～
+
+- [Variant Docs](https://unocss.dev/config/variants)
+- [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIBmB7b6B8AUFFKJLIihjAK5IAu2AtgFz0CmAHvQLQBO7EAQDCdRkygA1BHzAIAdvWAB6cBCIq1RIA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCqWEcAvnOlBCHAOQCujAYypVuAKFGoAHpFgoMAQ14AbeGkw58hYEQAUCUXDgA3eVGDysMKgC44AbQOHEjp3CzyQqW91AyYFmG4SFycQeRgBAAsdMIjI1CgASmdXVwECKgglVAA6JQhdWKiExJDXYHQ4HQBCIvioHKp-WCoAdWAYaO4BXibOa25E5MoYXigsODqEsqcRsYn9VNSpqFsVxqVgAVQdAHZE4KXXGmyBGGhbHSpkgF4APjgAAwASBCpma0iIIwTHw6PDAAjCDIACel2BYNuD0WAKc6SwmWyeQKOkhoNKcKc6Jy6GgAFF5FEdDojNCUlinBUqkY7ABGAC6yVpjLgAGobjw4NVfNB-JYxJSWJjKXNxnB0TNXMx-gCwKZUJZvAABTzIcxVL4-VZwLUlOAWZBVSDYGAJWzqVCJIJSlgzGUhB2GBn-CjUWg2exumj0Rg6RIu0TMUpAA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+- [Variant Types](https://github.com/unocss/unocss/blob/1cb4ce12493bd24c63ed0206ae746deae5ba521d/packages/core/src/types.ts#L253-L317)
+
+</div>
+
 
 ---
+layout: two-cols
+growX: 90
+growY: 20
+growSize: 1.2
+---
 
-# <span font-mono>.github</span> Magic Repo
+# Themes
+Uno 对齐 `Tailwind` 的主题支持，但是更加强大
+
+<div class="number-bg">T</div>
+
+<v-clicks>
+
+- 内置主题
+- mergeThemes & extendThemes
+- 自定义主题
+
+</v-clicks>
+
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+
+##### 内置主题
+Uno 在 `presetMini` 包中内置基本主题<br/>
+包括`colors` `font` `breakpoint` ···<br/>
+
+[Link](https://github.com/unocss/unocss/tree/main/packages/preset-mini/src/_theme)
 
 
+Uno 在 `presetWind` 增加主题系统<br/>
+包括`animate` `media` ···
+
+[Link](https://github.com/unocss/unocss/blob/main/packages/preset-wind/src/theme.ts)
+
+##### Export/Import
+
+Uno 将主题系统对外开放，你可以轻松获取主题实例
+
+```bash
+pnpm add @unocss/preset-mini
+```
+
+```ts
+import { theme } from '@unocss/preset-mini'
+// OR
+import { theme } from '@unocss/preset-wind'
+```
+</div>
+
+<div v-show="$slidev.nav.clicks === 2">
+
+##### mergeTheme & [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIAuBTAHpgWiQFt0A%2BAKCh3wuAHpwJK6nZEUMbC4BzcqtzqNIZIA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCqWEcAvnOlBCHAOQCujAYypVuAKFGoAHpFgoMAQ14AbeGkw58hYEQAUCUXHKUaMKgC44AbQOGj1Wgwg6AlCRuH9t21nkhUF7gp7GABadAgIbjcvQxgAC1Q-C08Yw3CsGABlYAAvf0R3VLgQZAtLbgBGADoKgCYAVkoQKJ5qxsTuAF1oosMlIjLKqoamlqH25u7Cr2YembmWBZSvHySeIJMwiKjpuHjE-OWY9Kzcw92vKhBBgAYqgA4Adgmx6rqXqd7Z3e-5mynmM5REA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+当多个预设中，存在主题时。Uno 会自动 **深度合并** 主题
+
+<div fsc gap-3 un-children="flex-1">
+<div>
+
+```ts
+// preset-foo
+{
+  theme: {
+    colors: {
+      red: 'red',
+      blue: 'blue',
+    }
+  }
+}
+```
+
+</div>
+
+<div>
+
+```ts
+// preset-bar
+{
+  theme: {
+    colors: {
+      red: 'pink',
+      green: 'green',
+    }
+  }
+}
+```
+
+</div>
+</div>
+
+<br />
+
+##### extendThemes & [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIAuBTAHpgWgCdsQCBWABkvQD4d9gB6cCWgKHdElkRQwaEARnACu2OoOasOQA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCqWEcAvnOlBCHAOQCujAYypVuAKFGoAHpFgoMAQ14AbeGkw58hYEQAUCUXHKUaMKgC44AbQOGj1Wgwg6AlCRuH9t21nkhUF7gp7GABadAgIbjcvQykYVCxkABUAC1Q-HRg0v2dEdxjKGF4oLDyYmIA6Kqz01Gjy2wEIJWhzMoavSmQLTw6YgFYABkGArqj8juZ6yemY5gmWWambAF16uITk7NRM7dzew0Li0oPbKoqav1nDJpaoNtOvc8vUCtvW69sAIyVef3aOgARACiADEAIJ0AAySQCPz%2B4xmC2WXnmhmWzGcoiAA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+
+在主题深度合并之后，继承主题系统以扩展其能力
+
+```ts
+{
+  extendTheme(mergedTheme) {
+    return {
+      ...mergedTheme,
+      colors: {
+        red: {
+          500: 'red',
+        },
+      },
+    }
+  },
+}
+```
+
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 3" fccc gap-4 h-full>
+
+
+### 如何丝滑且优雅的自定义主题呢？
+
+<div w-40 h-40 bg="[url(/customTheme.png)]" bg-cover></div>
+
+[Playground](TODO)
+
+</div>
 
 ---
 layout: fact
@@ -530,70 +774,228 @@ growSize: 1.5
 clicks: 1
 ---
 
-<h1 :class="$slidev.nav.clicks === 1 ? 'line-through op50!' : ''"><span text-transparent text-8xl bg-clip-text bg-gradient-to-r from-rose-400 to-pink-600>TURN OFF</span> Notifications</h1>
+<h1 transition duration-500 :class="$slidev.nav.clicks === 1 ? 'pa top-0 left-1/2 translate-x--1/2 scale-40 w-100vw op50!' : ''">
+<span text-transparent text-8xl bg-clip-text bg-gradient-to-r from-rose-400 to-pink-600>Good Work~!</span>
+<br/>
+<span text-7xl>UnoCSS so Friendly</span>
+</h1>
 
-<p :class="$slidev.nav.clicks === 1 ? 'line-through op20!' : ''">and call it a day</p>
+<p v-click="1">
+接下里，让我为你介绍核心功能<br/>
+<span text-6xl animate-pulse text='$vp-c-brand'>Presets</span>
+</p>
 
 ---
-layout: fact
+layout: cover
 growX: 50
 growY: 0
 growSize: 1.5
 ---
 
-# Seek for Notifications
-don't let them seek for you
+# Presets
 
-<div class="number-bg">1</div>
+Uno 的灵活强大的工作能力来源于 `Presets`
 
----
-layout: center
----
+<div class="number-bg">P</div>
 
-<v-clicks depth="2">
+<v-clicks>
 
-- Turn off Email & App **Push** notifications
-
-- Look for notifications **proactively**
-
-  - Use GitHub Notifications Inbox
-
+- Uno preset - UnoCSS 的默认预设 (集成 Mini * Wind)
+- Attributify preset - Enable Attributify mode
+- Icon preset - Use any icon with Pure CSS.
+- Typography preset - 排版预设
+- Web Fonts preset - 使用 Web 字体预设
+- etc. 更多预设见 [Official Presets](https://unocss.dev/presets) & [Community Presets](https://unocss.dev/presets/community)
+  
 </v-clicks>
 
 
 ---
-layout: fact
+layout: cover
+growSize: 0.5
+---
+
+# PresetUno
+
+<div v-click-hide >
+PresetUno 是 UnoCSS 的默认预设
+
+它集成 PresetMini & PresetWind 的**所有功能**
+</div>
+<div v-after>
+
+[Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIDuAnBAHPAU23QD4AoKKUSWRFDAF0IA9GBabQkdgVgAZ%2BZAApckhRlACqAOwD2UACqEkjYAHpwEChq0Vy5IA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCqWEcAvnOlBCHAOQCujAYypVuAKFGoAHpFgoMAQ14AbeGkw58hYEQAUCUXHKUaMKgC44AbQOGj1Wgwh6btuAHo3KeVADWAfgtuASV5YW44AB8eEFRkYHlwqIARbx8AWQg0AGVUJVQBGGgqF1tkVMDg0JESEsNa9095GBgoYAAjXhhgdABPAAUaXmQIALgAIQgIPPkseqaW9s7u-sHhi3R5JRoa1zrdhrgAN294try%2BykxJUaoFrCJ649b5M9QLjGBJQP4AWm4d3b1Dx2K43O5ESJwW6te6WAC6QM8FA%2BXx4v3%2B9URIKU2gAFjBRm1JtNZvtkegcUR8RYWrxUCVmABKAFwgFUXHQGACTrmRAlADuUHkYDAqCggX5PwAjAAGGWHflwXHSuWHXFsPKSODAGCoEBUH4CVBYXVQOAAK14t2WhuNprEhmYoiZoiAA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+
+</div>
+
+---
+layout: cover
 growX: 0
 growY: 50
 growSize: 1.5
 ---
 
-# Group your Notifications
-by repository, instead of time
+# PresetAttributify
+Attributify Mode  
 
-<div class="number-bg">2</div>
+<div v-click="1">
+
+```ts {monaco-diff}
+<button class="px-4 py-2 rounded b b-red text-xl text-white">
+  Button
+</button>
+~~~
+<button 
+  p="x-4 y-2" rounded
+  b="~ red"
+  text="xl white"
+>
+  Button
+</button>
+```
+
+</div>
+
+<div v-click="2">
+
+[PLayground](https://unocss.dev/play/?html=DwEwlgbgBA7gTgQwA5IKZwHwCgpVJKAF1QA9CBaAYgDNaoMoAFOVAZ1UKgEFDC4wARgFdCYagE88AenARswGZGxYsQA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCCMMUwARgK4zDoCeZF1tAJIBjAlT6UaMAKpYIcAL5x0UCCDgByNnOFUqGgFAHUAD0iwUGAIZsANvDSYc%2BQsCIAKBAbhwqAC2gYYQ4qAC5Ebx84AHcoKzAwVChwjWiAWgBGAAYsgDdouD9MnNy-ZVtTOGAYVBAqNOFULBqoOAArNipOHgamlo0SSIVBn34pMLgAbUjRyVpZCHcAShGosdoGJlYOLm5PGaiAekOfACo4AHksW244Iiakqxq4XABlV%2BVoOCet9m7br7CWxWPQHHzHXxbYQwAD84RYEAgFSsWDBcDRELg5wAAo4bPZNNo0oYokcTvxMCY4ZDmFgiGiMScsZdrrcQE9hGV0F8KcATKhkN9GMw-tRGeRKJSBVcbtSEUjUCiGaTwUzzq82AlAnB2UE-NgiHA5Fg0rkrLY2AKhb8OGKVXBMadxcyAGJfUxWcAVZ3nAAG-r8MBAth9cAAPMhgLkdTA0gAmB0APlD-t9PtDuOsdngTEtPsO4uNADVzZbkJsRba5Yjkaj7aG6HBbMAunAIOhrZWalQ4DB5CxUFUiHJKIKVGo4KYmFZoQaAHTitwj1AV7bd6ldWlESYAXSM9ohkw0udQGh3bdaR7P4pPABUIAA5Agli0C6sKpWkhQrSI7wbfgwgA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+
+</div>
+
+<div v-click="3">
+
+[TypeScript support (JSX/TSX)](https://unocss.dev/presets/attributify#typescript-support-jsx-tsx)
+
+</div>
+
+
+
+<div class="number-bg">A</div>
+
+
 
 ---
+layout: cover
 growX: 110
 growY: -10
-clicks: 2
 ---
 
-<Arrow x1="600" y1="200" x2="550" y2="75" text-lime shadow v-if="$slidev.nav.clicks === 1" />
+# PresetIcon
+用纯 css 去使用任意图标
+
+<div class="number-bg">Icon</div>
+
+
+<div v-click="1" v-show="$slidev.nav.clicks === 1"      >
+
+```bash
+npm i -D @iconify-json/[the-collection-you-want]
+```
+
+```ts
+export default defineConfig({
+  presets: [
+    presetIcons({ /* options */ }),
+    // ...other presets
+  ],
+})
+```
+
+</div>
+
+<div fsc gap-20 w-full of-hidden v-show="[2,3].includes($slidev.nav.clicks)">
+
+<div v-click="2" :class="$slidev.nav.clicks === 3 ? 'w-400px' : ''">
+
+```html
+<div fcc gap-4 text-5xl>
+<!-- A basic anchor icon from Phosphor icons -->
+<div class="i-fluent-emoji-confused-face" />
+<!-- An orange alarm from Material Design Icons -->
+<div class="i-mdi-alarm text-orange-400" />
+<!-- A large Vue logo -->
+<div class="i-logos-unocss text-6xl" />
+<!-- Sun in light mode, Moon in dark mode, from Carbon -->
+<button class="i-carbon-sun dark:i-carbon-moon" />
+<!-- Twemoji of laugh, turns to tear on hovering -->
+<div class="i-twemoji-grinning-face-with-smiling-eyes hover:i-twemoji-face-with-tears-of-joy" />
+</div>
+```
+
+</div>
+
+<div v-click="3" fcc gap-4 text-5xl>
+<!-- A basic anchor icon from Phosphor icons -->
+<div class="i-fluent-emoji-confused-face" />
+<!-- An orange alarm from Material Design Icons -->
+<div class="i-mdi-alarm text-orange-400" />
+<!-- A large UnoCSS logo -->
+<div class="i-logos-unocss text-6xl" />
+<!-- Sun in light mode, Moon in dark mode, from Carbon -->
+<button class="i-carbon-sun dark:i-carbon-moon" />
+<!-- Twemoji of laugh, turns to tear on hovering -->
+<div class="i-twemoji-grinning-face-with-smiling-eyes hover:i-twemoji-face-with-tears-of-joy" />
+</div>
+
+</div>
 
 
 ---
-layout: fact
+layout: two-cols
 growX: 90
 growY: 90
 growSize: 1.5
 ---
 
-# What to Focus
-filter out the noise, prioritize
+# PresetIcon
+强大 Icon 使用集成能力
 
-<div class="number-bg">3</div>
+<div class="number-bg">Icon</div>
 
+<v-clicks>
+
+- Render Mode
+- 自动引入图标集 (Only in node env)
+- CDN
+- Load 本地资源
+
+</v-clicks>
+
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+Uno Icon 渲染模式 分为：`mask` `background`, 默认为`mask`
+
+```css
+.icon {
+  '--un-icon': url,
+  '-webkit-mask': 'var(--un-icon) no-repeat',
+  'mask': 'var(--un-icon) no-repeat',
+  '-webkit-mask-size': '100% 100%',
+  'mask-size': '100% 100%',
+  'background-color': 'currentColor',
+  // for Safari https://github.com/elk-zone/elk/pull/264
+  'color': 'inherit',
+}
+```
+
+你也可以指定 Uno Icon 的生成规则
+```html
+<div class="i-logos-unocss?mask text-6xl" />
+<div class="i-logos-unocss?bg text-6xl" />
+```
+<div fsc gap-10 mt-2>
+<div class="i-logos-unocss?mask text-6xl" />
+<div class="i-logos-unocss?bg text-6xl" />
+</div>
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 2">
+
+#### Auto Install
+
+</div>
 
 ---
 layout: center
@@ -689,4 +1091,4 @@ growY: 120
 
 # Thank You!
 
-Slides on [antfu.me](https://antfu.me)
+Slides on [talks.zyob.top]

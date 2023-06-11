@@ -11,4 +11,5 @@ export default defineConfig({
     [/^btn-(.*)$/, ([, c]) => `bg-${c}-400 text-${c}-100 py-2 px-4 rounded-lg`],
     [/^btn-expand-(.*)$/, ([, c]) => `hover-(bg-black text-(${c} xl)) bg-${c}-400 text-${c}-100 btn transition duration-350 b-(~ ${c})`],
   ],
+  separators: ['_', '-', ':'],
 })
