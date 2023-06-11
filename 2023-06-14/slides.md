@@ -781,7 +781,7 @@ clicks: 1
 </h1>
 
 <p v-click="1">
-接下里，让我为你介绍核心功能<br/>
+接下来，让我为你介绍核心功能<br/>
 <span text-6xl animate-pulse text='$vp-c-brand'>Presets</span>
 </p>
 
@@ -955,9 +955,10 @@ growSize: 1.5
 <v-clicks>
 
 - Render Mode
-- 自动引入图标集 (Only in node env)
+- 自动引入图标集 (Node env)
 - CDN
-- Load 本地资源
+- Load 本地/网络资源
+- [Documentation](https://unocss.dev/presets/icons)
 
 </v-clicks>
 
@@ -993,24 +994,85 @@ Uno Icon 渲染模式 分为：`mask` `background`, 默认为`mask`
 
 <div v-show="$slidev.nav.clicks === 2">
 
-#### Auto Install
+#### Auto import
+
+你在使用 `iconify` 图标集合时，你不必在预设中再次注册图标集合`collection`，而导致图标资源加载失败。
+
+依赖于上流 `iconify` 的能力, `Uno` 在解析规则时，会去自动搜索`已安装`的`iconify dataset`，创建对应集合的 `loader`
+
+```ts {monaco-diff}
+presetIcons({
+  collections: {
+    carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
+    mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
+    logos: () => import('@iconify-json/logos/icons.json').then(i => i.default),
+  }
+})
+~~~
+presetIcons({
+  
+})
+```
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 3">
+
+#### CDN
+如果你更喜欢从 CDN 获取它们，您可以指定选项 `cdn`。
+
+我们推荐 `esm.sh` 作为 CDN 提供商。
+
+```ts
+presetIcons({
+  cdn: 'https://esm.sh/'
+})
+```
+
+[Interactive Docs](https://unocss.dev/interactive/)
+
+</div>
+
+<div v-show="$slidev.nav.clicks === 4">
+
+#### 加载本地/网络资源
+如果你的本地存在图标资源，你可以通过 Node 将其注册 图标预设的 `collections` 中。
+
+```ts
+collections: {
+  'my-icons': {
+    account: '<svg><!-- ... --></svg>',
+    settings: () => fs.readFile('./path/to/my-icon.svg', 'utf-8'),
+  },
+  'my-other-icons': async (iconName) => {
+    return await fetch(`https://example.com/icons/${iconName}.svg`).then(res => res.text())
+  },
+  'my-yet-other-icons': FileSystemIconLoader(
+    './assets/icons',
+    svg => svg.replace(/#fff/, 'currentColor')
+  )
+}
+```
+
+##### Usage
+  
+```html
+<div i-my-icons-account />
+<div i-my-icons-settings />
+<div i-my-other-icons-[iconName] />
+<div i-my-yet-other-icons-[iconName] />
+```
 
 </div>
 
 ---
-layout: center
+layout: cover
 ---
 
-<v-clicks depth="2">
+# PresetTypography
+呵护你的 HTMl 排版布局
 
-- Dismiss issues/PRs that are **closed/merged**<br><span op50 translate-y--10px inline-block>(when not participant in; trust your team)</span>
-- Dismiss notifications of
-  - Bots 🤖
-  - New commits pushed to PRs
-  - GitHub Actions cancelled
-  - etc.
-
-</v-clicks>
+[Playground](TODO)
 
 ---
 layout: center
