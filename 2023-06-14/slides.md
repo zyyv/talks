@@ -550,6 +550,7 @@ growSize: 1.5
 - Nested variant 嵌套变体
 - Separator 分割符
 - Custom
+- [Check All Variants](https://windicss.org/utilities/general/variants.html#theme-variants)
 
 </v-clicks>
 
@@ -1140,10 +1141,8 @@ growSize: 1.1
 <v-clicks>
 
 - Usage
-- [丰富的颜色集成](https://github.com/unocss/unocss/blob/main/packages/preset-typography/src/preflights/default.ts)
-- cssExtend 样式覆盖
-- 兼容性
-- [Playground](TODO)
+- Custom Fetch
+- [Playground](https://unocss.dev/play/?html=DwEwlgbgBA7gTgQwA5IKZwHwCgpVJKAMwHsA7AFwFoBbM4jAVVOIGEBlNqAXh6idY7AA9OAjZho7EA&config=JYWwDg9gTgLgBAbwFBzgEwKYDNgDsMDCEuOA5gDQpxhQYDOGMAgjDFMAEYCuMwWAnpVQ16jAJIBjYnSHVaDGAFVcEWSIUB1DBwBixGDKQBfOFigQQcAORcVEunStIkGAB6RY6bAEMuAG3hMHHwiEmBSAApkVDoAC2gYCR46AC5EKlQAdyhvMDAMKDSrTIBaAEYABgqAN0y4WPKq6tjTPzc4YBgMEDoSiQxcLqg4ACsuOl4BPoGhq1kjNXlGVLgAbQy5USUVCIBKWWEl5lZ2bkn%2BPYPNhUlpKI2YiW82tLKAOgAmK9QJNFwi2KsMCpAD0IPoIDecRBcw2Rn2G3UjC0un0dHuqExpjRaWiWMxdG8uBWVgAShAOBAYBBYfjMSBiBA0qsrDpgDk4ERMHNrGyOQBZRkpAAsVXIAHYqlYALrfOALB5wMEdXB%2BPAYMTgBIrLDPBhwhGoWXGXZIIA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
 
 </v-clicks>
 
@@ -1168,51 +1167,89 @@ presets: [
 ```
 <br/>
 ```html
-<div font-mono> font-mono display: === ->  </div>
+<div font-mono> Fira Code font display: === -> >= !=  </div>
 ```
 <br/>
-<div font-mono> font-mono display: === ->  </div>
+<div font-mono> Fira Code font display: === -> >= !=  </div>
 
 </div>
 
+<WhenClickShow :index="2">
+
+#### Custom Fetch
+
+如果你遇到 load `fonts` 被墙的情况，你可以通过自定义 `fetch` 选项来自定义字体资源的获取方式。
+
+```ts
+presetWebFonts({
+  // use axios with an https proxy
+  customFetch: (url: string) => axios.get(url, { httpsAgent: new ProxyAgent('https://localhost:7890') }).then(it => it.data),
+  provider: 'google',
+  fonts: {
+    sans: 'Roboto',
+    mono: ['Fira Code', 'Fira Mono:400,700'],
+  },
+}),
+```
+
+</WhenClickShow>
+
 
 ---
-growX: 110
-growY: 110
+layout: center
+growX: 50
+growY: 0
+class: text-center
 ---
 
+<div :class="$slidev.nav.clicks === 3 ? 'children-text-3xl! op-35 pa w-full top-10 left-1/2 translate-x--1/2 transition duration-350 space-y-5' : 'space-y-10'">
 
-<div absolute left-165 right-5 top-20>
-<v-clicks>
-
-- Automatically dismiss unrelated notifications
-- <b text-hex-a371f7>Colorize</b> notifications type
-- Single-instance notifications tab
-- Auto refresh
-
-</v-clicks>
+<div class="text-7xl lh-18 font-bold">
+好耶 <span class="">🎉</span>～
 </div>
+
+<div v-click="1"
+ class="text-transparent text-4xl bg-clip-text bg-gradient-to-r from-red to-purple">
+UnoCSS(Hero) + Presets (红 Buff) 
+<span v-show="[2,3].includes($slidev.nav.clicks)" v-click="2">+ __?__ (蓝 Buff) </span>
+</div>
+
+</div>
+
+<h2 v-click="3" font-mono class="!text-7xl !lh-18 font-bold">
+? === <span text="$vp-c-brand">Transformer</span>
+</h2>
+
+
+
 
 
 ---
 layout: center
 ---
 
-# Wishlist to GitHub
+# Transformer 转换器
+为你的代码增添一点魔法
 
 <v-clicks depth="2">
 
-- GitHub Notifications API, **Please**!
-- Fine-grained notifications filter
-  - Bots, type of notifications, random ping, etc.
-- More interactive notifications inbox
-  - Live updates
-  - Avoid hard refreshes
+- 工作原理
+  - Vite Plugin Transform
+  - Cli Transform
+  - etc.
+- Official Transformers
+  - [Directives transformer](https://unocss.dev/transformers/directives)
+  - [Variant group transformer](https://unocss.dev/transformers/variant-group)
+  - [Compile class transformer](https://unocss.dev/transformers/compile-class)
+  - etc.
 
 </v-clicks>
 
 ---
 layout: center
+growX: 0
+growY: 110
+class: text-center
 ---
 
 <div w-100>
