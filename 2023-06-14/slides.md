@@ -187,9 +187,11 @@ Demo 展示
 <!-- Button Componetent -->
 <template>
   <button 
-    w-full h-12 rounded transition duration-350
-    hover-bg-op-90
-    active="op-80 scale-105"
+    class="
+      w-full h-12 rounded transition duration-350
+      hover-bg-op-90 
+      active-bg-op-80 active-scale-105
+    "
   >
     <slot />
   </button>
@@ -202,13 +204,14 @@ Demo 展示
 
 ```html
 <template>
-  <div flex="~ items-center" children-flex-1>
-    <Button bg="#d5001c" text-white>Pursche</Button>
-    <Button 
-      b="~ #d5001c" text="#d5001c" bg-white
-      hover="bg-#d5001c text-white"
+  <div class="flex items-center">
+    <Button class="flex-1 bg-#d5001c text-white">
+      Button
+    </Button>
+    <Button class="flex-1 b b-#d5001c text-#d5001c bg-white
+      hover-bg-#d5001c hover-text-white"
     >
-      Pursche
+      Button
     </Button>
   </div>
 </template>
@@ -326,6 +329,41 @@ growY: 0
 就像书写 class='xxx' 那么简单
 
 <div class="number-bg">S</div>
+
+<div v-show="$slidev.nav.clicks === 0" pf top="50%" left-20 right-20 translate-y="-1/2">
+
+```ts
+// uno.config.ts
+{
+  shortcuts: {
+    'btn': 'w-fit py-2 px-4 font-semibold rounded-lg shadow-md',
+  }
+}
+```
+
+```ts {monaco-diff}
+<button class="w-fit py-2 px-4 font-semibold rounded-lg shadow-md bg-red">
+  Button
+</button>
+~~~
+<button class="btn bg-red">
+  Button
+</button>
+```
+
+<div w-full grid="~ cols-2" mt-2>
+<button w-fit py-2 px-4 font-semibold rounded-lg shadow-md bg-red>
+  Button
+</button>
+
+<button class="btn bg-red w-fit">
+  Button
+</button>
+</div>
+
+
+
+</div>
 
 <v-clicks>
 
@@ -560,15 +598,15 @@ Uno 允许你在书写规则是，嵌套变体使用<br/>
 ##### Usage
 
 ```html
-<div class="hover:dark:important:text-teal">Hover Me!</div>
+<div class="dark:hover:important:text-teal">Hover Me!</div>
 ```
 
 ```css
 /* Output */
-.hover\:dark\:text-teal:hover{--un-text-opacity:1 !important;color:rgba(45,212,191,var(--un-text-opacity)) !important;}
+.dark .dark\:hover\:important\:text-teal:hover{--un-text-opacity:1 !important;color:rgba(45,212,191,var(--un-text-opacity)) !important;}
 ```
 
-<div class="hover:dark:important-text-teal">Hover Me!</div>
+<div class="dark:hover:important:text-teal">Hover Me!</div>
 
 <div>
 
@@ -803,7 +841,7 @@ Uno 的灵活强大的工作能力来源于 `Presets`
 - Uno preset - UnoCSS 的默认预设 (集成 Mini * Wind)
 - Attributify preset - Enable Attributify mode
 - Icon preset - Use any icon with Pure CSS.
-- Typography preset - 排版预设
+- Typography preset - 排版系统
 - Web Fonts preset - 使用 Web 字体预设
 - etc. 更多预设见 [Official Presets](https://unocss.dev/presets) & [Community Presets](https://unocss.dev/presets/community)
   
@@ -812,7 +850,9 @@ Uno 的灵活强大的工作能力来源于 `Presets`
 
 ---
 layout: cover
-growSize: 0.5
+growX: 50
+growY: 100
+growSize: 0.8
 ---
 
 # PresetUno
@@ -826,7 +866,10 @@ PresetUno 是 UnoCSS 的默认预设
 
 [Playground](https://unocss.dev/play/?html=DwEwlgbgBAxgNgQwM5ILwCIDuAnBAHPAU23QD4AoKKUSWRFDAF0IA9GBabQkdgVgAZ%2BZAApckhRlACqAOwD2UACqEkjYAHpwEChq0Vy5IA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCqWEcAvnOlBCHAOQCujAYypVuAKFGoAHpFgoMAQ14AbeGkw58hYEQAUCUXHKUaMKgC44AbQOGj1Wgwh6btuAHo3KeVADWAfgtuASV5YW44AB8eEFRkYHlwqIARbx8AWQg0AGVUJVQBGGgqF1tkVMDg0JESEsNa9095GBgoYAAjXhhgdABPAAUaXmQIALgAIQgIPPkseqaW9s7u-sHhi3R5JRoa1zrdhrgAN294try%2BykxJUaoFrCJ649b5M9QLjGBJQP4AWm4d3b1Dx2K43O5ESJwW6te6WAC6QM8FA%2BXx4v3%2B9URIKU2gAFjBRm1JtNZvtkegcUR8RYWrxUCVmABKAFwgFUXHQGACTrmRAlADuUHkYDAqCggX5PwAjAAGGWHflwXHSuWHXFsPKSODAGCoEBUH4CVBYXVQOAAK14t2WhuNprEhmYoiZoiAA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
 
+
 </div>
+
+<div class="number-bg">Un</div>
 
 ---
 layout: cover
@@ -836,7 +879,7 @@ growSize: 1.5
 ---
 
 # PresetAttributify
-Attributify Mode  
+Attributify Mode
 
 <div v-click="1">
 
@@ -1073,6 +1116,8 @@ layout: cover
 呵护你的 HTMl 排版布局
 
 [Playground](TODO)
+
+<div class="number-bg">TG</div>
 
 ---
 layout: center
