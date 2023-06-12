@@ -1115,22 +1115,66 @@ layout: cover
 # PresetTypography
 呵护你的 HTMl 排版布局
 
-[Playground](TODO)
+<v-clicks>
+
+- [内置所有标签样式](https://github.com/unocss/unocss/blob/main/packages/preset-typography/src/preflights/default.ts)
+- [丰富的颜色集成](https://github.com/unocss/unocss/blob/main/packages/preset-typography/src/preflights/default.ts)
+- cssExtend 样式覆盖
+- 兼容性
+- [Playground](TODO)
+
+</v-clicks>
 
 <div class="number-bg">TG</div>
 
 ---
-layout: center
+layout: two-cols
 growX: 50
 growY: 100
 growSize: 1.1
 ---
 
-<div text-center mt4 op50 italic font-serif mb2>I wrote a userscript:</div>
-<div flex="~ gap-2 items-center" text-3xl font-mono>
-<div i-simple-icons-github/> <a href="https://github.com/antfu/refined-github-notifications">antfu/refined-github-notifications</a>
+# PresetWebFonts
+让字体变得更加简单
+
+<v-clicks>
+
+- Usage
+- [丰富的颜色集成](https://github.com/unocss/unocss/blob/main/packages/preset-typography/src/preflights/default.ts)
+- cssExtend 样式覆盖
+- 兼容性
+- [Playground](TODO)
+
+</v-clicks>
+
+::right::
+
+<div v-show="$slidev.nav.clicks === 1">
+
+#### Usage
+
+[Google Fonts](https://fonts.google.com/) & [Font Share](https://www.fontshare.com/) & etc.
+
+```ts
+presets: [
+  presetWebFonts({
+    provider: 'google',
+    fonts: {
+      sans: 'Roboto',
+      mono: ['Fira Code', 'Fira Mono:400,700'],
+    }
+  })
+]
+```
+<br/>
+```html
+<div font-mono> font-mono display: === ->  </div>
+```
+<br/>
+<div font-mono> font-mono display: === ->  </div>
+
 </div>
-<div text-center mt4 op50 italic font-serif v-click>It's hacky and opinionated!</div>
+
 
 ---
 growX: 110
