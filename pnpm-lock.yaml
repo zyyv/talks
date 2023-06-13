@@ -41,6 +41,9 @@ importers:
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
+      shiki:
+        specifier: ^0.14.2
+        version: 0.14.2
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
