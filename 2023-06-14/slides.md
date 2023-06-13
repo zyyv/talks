@@ -483,9 +483,9 @@ growY: 0
 
 </div>
 
-<div v-show="$slidev.nav.clicks >=  5">
+<div v-show="$slidev.nav.clicks >=  5" max-h-100 of-auto rd>
 
-```ts {all|2-3|5-20|6-11|13-18|23-24|33} {maxHeight:'400px'}
+```ts {all|2-3|5-20|6-11|13-18|23-24|33}
 async expandShortcut(input: string, context: RuleContext<Theme>, depth = 5): Promise<[ShortcutValue[], RuleMeta | undefined] | undefined> {
     if (depth === 0)
       return
@@ -1705,4 +1705,4 @@ growY: 120
 
 特别感谢 [@antfu](https://github.com/antfu)、 [@slidev](https://github.com/slidevjs/slidev)、 [@unocss](https://github.com/unocss/unocss)
 
-Slides on [talks.zyob.top]()
+Slides on [https://talks.zyob.top/2023-06-14/unocss-best-practice/](https://talks.zyob.top/2023-06-14/unocss-best-practice/)
