@@ -8,13 +8,13 @@
   command = "pnpm run build"
 
 [[redirects]]
-  from = "/talks/unocss-best-practice/"
-  to = "https://talks.zyob.top/talks/unocss-best-practice/"
+  from = "/2023-06-14/unocss-best-practice/"
+  to = "https://talks.zyob.top/2023-06-14/unocss-best-practice/"
   status = 301
   
 [[redirects]]
-  from = "/talks/unocss-best-practice/*"
-  to = "/talks/unocss-best-practice/index.html"
+  from = "/2023-06-14/unocss-best-practice/*"
+  to = "/2023-06-14/unocss-best-practice/index.html"
   status = 200
 
 [[redirects]]
