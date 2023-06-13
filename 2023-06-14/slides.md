@@ -1705,4 +1705,4 @@ growY: 120
 
 特别感谢 [@antfu](https://github.com/antfu)、 [@slidev](https://github.com/slidevjs/slidev)、 [@unocss](https://github.com/unocss/unocss)
 
-Slides on [https://talks.zyob.top/2023-06-14/unocss-best-practice/](https://talks.zyob.top/2023-06-14/unocss-best-practice/)
+Slides on [talks.zyob.top](https://talks.zyob.top/)
