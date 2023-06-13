@@ -1,0 +1,23 @@
+
+[build.environment]
+  NODE_VERSION = "20"
+  PLAYWRIGHT_BROWSERS_PATH = "0"
+
+[build]
+  publish = "dist"
+  command = "pnpm run build"
+
+[[redirects]]
+  from = "/talks/unocss-best-practice/"
+  to = "https://talks.zyob.top/talks/unocss-best-practice/"
+  status = 301
+  
+[[redirects]]
+  from = "/talks/unocss-best-practice/*"
+  to = "/talks/unocss-best-practice/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/"
+  to = "https://zyob.top"
+  status = 302
