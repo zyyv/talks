@@ -10,6 +10,7 @@ export default defineConfig({
         sans: 'Roboto',
         mono: ['Fira Code', 'Fira Mono:400,700'],
       },
+      inlineImports: true,
     }),
   ],
   shortcuts: [

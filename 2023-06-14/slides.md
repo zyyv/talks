@@ -1138,6 +1138,8 @@ growSize: 1.1
 # PresetWebFonts
 让字体变得更加简单
 
+<div class="number-bg">FT</div>
+
 <v-clicks>
 
 - Usage
@@ -1222,8 +1224,6 @@ UnoCSS(Hero) + Presets (红 Buff)
 
 
 
-
-
 ---
 layout: center
 ---
@@ -1246,29 +1246,453 @@ layout: center
 </v-clicks>
 
 ---
-layout: center
+layout: two-cols
 growX: 0
 growY: 110
-class: text-center
 ---
 
-<div w-100>
+# Directives transformer
+UnoCSS 指令让 css 变的简单
 
-<h1 mb-2>Warping up</h1>
+<div class="number-bg">D</div>
 
-<v-clicks>
+<v-clicks depth="2">
 
-- Keep maintenance scope manageable, don't let it grow out of control.
-
-- **Reply and forget** - new notifications will come up once you get replies.
-
-- Use tools to help you focus.
-
-- **Enjoy it!**
+- `@apply`
+  - applyVariable
+- `@screen`
+- `theme()`
 
 </v-clicks>
 
+::right::
+
+<WhenClickShow :index="1">
+
+#### `@apply`
+直接在 css 文件中使用 `@apply` 指令，可以将 UnoCSS 的样式应用到你的 css 中。
+
+```css
+/* style.css */
+.btn {
+  @apply px-2 py-1 rounded-md bg-blue-500 text-white;
+}
+```
+在打包后将会被转换为
+```css
+.btn {
+  --un-bg-opacity: 1;
+  --un-text-opacity: 1;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0.375rem;
+  background-color: rgba(59, 130, 246, var(--un-bg-opacity));
+  color: rgba(255, 255, 255, var(--un-text-opacity));
+}
+```
+
+</WhenClickShow>
+
+<WhenClickShow :index="2">
+
+#### `@apply`
+直接在 css 文件中使用 `@apply` 指令，可以将 UnoCSS 的样式应用到你的 css 中。
+
+```css
+/* style.css */
+.btn {
+  /* some lint error with `@apply` */
+  @apply px-2 py-1 rounded-md bg-blue-500 text-white;
+}
+```
+
+<br />
+
+#### applyVariable
+
+```ts
+{
+  // ...other options
+  applyVariable: ['--at-apply', '--uno-apply', '--uno']
+}
+```
+
+Then
+
+```css
+.btn {
+  --uno: px-2 py-1 rounded-md bg-blue-500 text-white;
+}
+```
+
+</WhenClickShow>
+
+<WhenClickShow :index="3">
+
+#### `@screen`
+使用`@screen`轻松书写媒介查询style。
+
+断点名称来自于 `theme.breakpoints`。
+
+
+```css
+/* style.css */
+.grid {
+  --uno: grid grid-cols-2;
+}
+@screen xs {
+  .grid {
+    --uno: grid-cols-1;
+  }
+}
+@screen sm {
+  .grid {
+    --uno: grid-cols-3;
+  }
+}
+/* ... */
+...
+```
+
+[Playground](https://unocss.dev/transformers/directives#screen)
+
+</WhenClickShow>
+
+
+---
+layout: cover
+growX: 90
+growY: 10
+---
+
+# Variant group transformer
+
+<div class="number-bg">V</div>
+
+<WhenClickShow :index="1">
+
+<div v-show="$slidev.nav.clicks === 1" v-click="1" key='vgt-1'>
+
+```html
+<button class="px-4 py-2 text-xl text-red rounded hover-bg-red hover-text-white ···">Button</button>
+```
+
+臃肿，不易维护
+
+如何隐式优化？
+
 </div>
+
+</WhenClickShow>
+
+
+<WhenClickShow :index="2">
+
+<div v-show="$slidev.nav.clicks === 2" v-click="2" key='vgt-2'>
+
+```html
+<button class="p-\(x-4 y-2) text-\(xl red) rounded hover-\(bg-red text-white) ···">Button</button>
+```
+
+清晰阅读，易维护
+
+在 build 阶段，将会被转换为：
+
+```html
+<button class="p-(x-4 y-2) text-(xl red) rounded hover-(bg-red text-white) ···">Button</button>
+```
+
+将「关注点」放在书写逻辑上，而不是样式上
+
+</div>
+
+</WhenClickShow>
+
+---
+layout: cover
+growX: 20
+growY: 40
+growSize: 0.8
+---
+
+# Compile class transformer
+编译组合多个类名到一个类名，化繁为简
+
+<div class="number-bg">C</div>
+
+<div v-show="$slidev.nav.clicks < 4">
+
+<div  v-click="1"  key='cct-1'>
+
+```html
+<button class="px-4 py-2 text-xl text-red rounded hover-bg-red hover-text-white ···">Button</button>
+```
+
+太多的类名，难以阅读
+
+</div>
+
+
+<div v-click="2">如何优化？</div>
+
+<div v-click="3" key='cct-2'>
+
+你只需要在类名前加上 `:uno:` 即可
+
+```html {monaco-diff}
+<button class="px-4 py-2 text-xl text-red rounded hover-bg-red hover-text-white ···">Button</button>
+~~~
+<button class=":uno: px-4 py-2 text-xl text-red rounded hover-bg-red hover-text-white ···">Button</button>
+```
+
+在 build 阶段，将会被转换为：
+
+```html
+<button class="uno-qlmcrp">Button</button>
+```
+
+</div>
+
+</div>
+
+<div v-click="4">
+
+你还可以自定义 `trigger`、`prefix`、`hash` ...
+
+[Options](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L4)
+
+</div>
+
+
+---
+layout: intro
+growX: 50
+growY: 50
+class: text-center
+---
+
+# Congrats！ 🎉
+
+---
+layout: two-cols
+growX: 50
+growY: 120
+---
+
+# Issues / Discussions
+实践是检验真理的唯一标准
+
+<div class="number-bg">I/D</div>
+
+<v-clicks>
+
+- [Dynamic Class](https://github.com/unocss/unocss/issues?q=dynamic+class)
+- Differences from tailwind
+- Single File Configration
+- Magic comment
+- AutoComplete
+- Preset Useful
+- Preset for your Team
+- etc.
+
+</v-clicks>
+
+::right::
+
+<WhenClickShow :index="1">
+
+### Dynamic Class
+
+错误用例
+
+```vue
+<script setup lang="ts">
+const foo = `bg-${Math.random() > 0.5 ? 'red' : 'blue'}`
+</script>
+<template>
+  <div :class="foo">
+    Dynamic class in Vue template
+  </div>
+</template>
+```
+
+Uno 是静态模板提取，如何处理动态类名？
+
+Workaround
+
+```ts
+{
+  safelist: ['bg-red', 'bg-blue']
+}
+```
+
+```ts
+const foo = Math.random() > 0.5 ? `bg-red' : 'bg-blue'
+```
+
+
+
+</WhenClickShow>
+
+<WhenClickShow :index="2">
+
+# ~~Tailwindcss~~
+我故意保留了一部分 Tailwind 的味道，但比它更香
+
+由于 UnoCSS 与 Tailwind 有着相似的行为逻辑。但保证框架的唯一性，所以在设计上有着一些不同。
+
+包括但不限于：
+
+```html {monaco-diff}
+<div class="grid-cols-[200px,minmax(90px,1fr),auto]">
+  With bracket in Tailwind
+</div>
+~~~
+<div class="grid-cols-[200px_minmax(90px,1fr)_auto]">
+  With bracket in UnoCSS
+</div>
+```
+
+```ts {monaco-diff}
+extend: {
+  spacing: {
+    test: '200px',
+  },
+},
+~~~
+spacing: {
+  test: '200px',
+},
+```
+
+
+```ts
+{
+  presets: [presetUno({ prefix: 'tw-' })]
+}
+```
+
+</WhenClickShow>
+
+<WhenClickShow :index="3">
+
+### uno.config.ts
+停止懒惰，拥抱单文件配置
+
+`UnoCSS` 通过 `unconfig` 尽可能读取你的 `Uno` 配置。
+
+但为了结合 `VsCode extension` 的智能提示有更好的体验，请单独创建配置文件。
+
+<br/><br/><br/><br/><br/><br/><br/>
+
+> 别问为什么，用就完事儿了 🤣
+
+</WhenClickShow>
+
+<WhenClickShow :index="4">
+
+### Magic Comment
+
+Uno 默认从 `.jsx`, `.tsx`, `.vue`, `.md`, `.html`, `.svelte`, `.astro` 和一些被按需引入的`.js` `.ts` 中提取 `utilities`。
+
+但有时候我们需要在其他文件中使用 `utilities`，这时候就需要使用 `magic comment` 标记该文件。
+
+### `@unocss-include` `@unocss-ignore`
+
+```css
+/* other.style.css */
+
+/* @unocss-include */ 标记此文件会被提取 utilities
+/* @unocss-ignore */ 忽略此文件，不会被提取 utilities
+.btn {
+  @apply px-2 py-1 rounded-md bg-blue-500 text-white;
+}
+```
+
+</WhenClickShow>
+
+<WhenClickShow :index="5">
+
+### 自动填充
+
+Uno 内置 `utilities` 智能补全、自动填充。
+
+- Rules
+- Variants
+- Shortcuts
+- ...
+
+当你在自定义它们的时候，可以在 `uno.config.ts` 中配置 `autoComplete` 选项。
+
+[Playground](https://unocss.dev/play/?html=DwEwlgbgBA7gTgQwA5IKZwHwCgpVJKAF1QGdCBaBAIwGMjSKBGADgwFUA7AewGEBlPsAD04CNmGjsQA&config=JYWwDg9gTgLgBAbzgEwKYDNgDtUGEJaYDmANHGFKgM6owCCMMUwARgK4zDoCeZF1tAJIBjAlT6UaMAKpYIcAL5x0UCCDgByNnOFUqGgFAHUAD0iwUGAIZsANvDSYc%2BQsCIAKBAbhwqAC2gYYQ4qAC5Ebx84AHcoKzAwVChwjWiAWgBGAAYsgDdouD9MnNy-ZVtTOGAYVBAqNOFULBqoOAArNipOHgamlo0SSIVBnyg7anCAbUifSY0arrSrFmEBxDhRW2gUymQNRQBdEajJgHoAPQWYNPcAHWQAagBKABJTsndJsmQDp7gAXgAfHBPJp0ARrlRgAAvVAacIAAxeCGQCjAJgRiieZC8USiNhgEFE4AqNRSVzSAB4sGwQIDDHiFEdIsyfPwpGE4NM8ezaLIIO5sTNyJJaAwmKwOFxuILjmzRTARGJPMKfFRhFYKuEMgA6ABMcqiwmQWBSfkYYDCp1O1BAOv8pwGwoUQp8zJdBiAA&css=Q&options=N4IgLgTghgdgzgMwPYQLYgFwKgGzgUwF8g)
+
+
+</WhenClickShow>
+
+<WhenClickShow :index="6">
+
+### Preset Useful
+
+✨ [My own preset](https://github.com/zyyv/unocss-preset-useful) ✨
+
+提取你实用的 `utilities` 到 any project
+
+```bash
+pnpm add -D [yourname]/unocss-preset-useful
+```
+
+```ts
+import { defineConfig } from 'unocss'
+import { presetUseful } from '[yourname]/unocss-preset-useful'
+
+export default defineConfig({
+  presets: [
+    // ...
+    presetUseful(),
+  ],
+})
+```
+
+<div text="$vp-c-brand" mt-10>
+如果你也和我一样，那么我觉得这件事情 __ __ __ !
+</div>
+
+</WhenClickShow>
+
+<WhenClickShow :index="7">
+
+### Preset for your `team`/`company`/`framework`
+
+为自己团队打造良好的 `CSS` 开发体验
+
+- Theme
+- Rules
+- Shortcuts
+- Variant
+
+[一个不太成熟的Demo: Onu UI](https://github.com/onu-ui/onu-ui/tree/main/packages/preset)
+
+</WhenClickShow>
+
+
+---
+layout: center
+growX: 50
+growY: 0
+---
+
+<h1 font-mono text="6xl!" text-transparent text-8xl bg-clip-text bg-gradient-to-br from-blue-500 to-pink-600>One More Thing</h1>
+
+<v-clicks>
+
+- [Interactive Docs](https://unocss.dev/interactive/) - 交互式文档
+- [Playground](https://unocss.dev/interactive/) - 在线 Playground
+- Inspector - UnoCSS 检查器
+
+</v-clicks>
+
 
 ---
 layout: intro
@@ -1279,4 +1703,6 @@ growY: 120
 
 # Thank You!
 
-Slides on [talks.zyob.top]
+特别感谢 [@antfu](https://github.com/antfu)、 [@slidev](https://github.com/slidevjs/slidev)、 [@unocss](https://github.com/unocss/unocss)
+
+Slides on [talks.zyob.top]()

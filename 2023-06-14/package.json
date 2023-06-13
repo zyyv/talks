@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /2023/github-notifications/ --out ../../dist/2023/github-notifications",
-    "export": "slidev export --per-slide --output ../2023-05-17-github-notifications-en.pdf",
+    "build": "slidev build --base /talks/unocss-best-practice --out ../dist/2023-06-14/unocss-best-practice",
+    "export": "slidev export --per-slide --output ./2023-06-14-unocss-best-practice.pdf",
     "play": "slidev --remote --tunnel"
   }
 }
