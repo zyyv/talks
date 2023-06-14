@@ -52,7 +52,7 @@ Vite、Vue、Nuxt etc. ecological contributors.<br>
   <div i-ri-user-3-line op50 ma text-xl/>
   <div><a href="https://zyob.top" target="_blank" class="border-none! font-300">zyob.top</a></div>
   <div i-ri-github-line op50 ma text-xl ml4/>
-  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">zyyv</a></div>
+  <div><a href="https://github.com/zyyv" target="_blank" class="border-none! font-300">zyyv</a></div>
   <div i-ri-twitter-line op50 ma text-xl ml4/>
   <div><a href="https://twitter.com/chris_zyyv" target="_blank" class="border-none! font-300">chris_zyyv</a></div>
 </div>
