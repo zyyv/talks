@@ -29,7 +29,7 @@ Chris
 </div>
 
 <div abs-bl mx-13 my-12 flex="~ col" text-sm text-left>
-  <div>Pursche Share Meeting</div>
+  <div>Porsche Share Meeting</div>
   <div text-sm opacity-50>June 14th, 2023</div>
 </div>
 
