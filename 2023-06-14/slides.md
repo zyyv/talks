@@ -1353,10 +1353,9 @@ Then
   }
 }
 /* ... */
-...
 ```
 
-[Playground](https://unocss.dev/transformers/directives#screen)
+[Documention](https://unocss.dev/transformers/directives#screen)
 
 </WhenClickShow>
 
@@ -1610,6 +1609,8 @@ Uno 默认从 `.jsx`, `.tsx`, `.vue`, `.md`, `.html`, `.svelte`, `.astro` 和一
   @apply px-2 py-1 rounded-md bg-blue-500 text-white;
 }
 ```
+
+[New Feature](https://github.com/unocss/unocss/issues/2761)
 
 </WhenClickShow>
 
