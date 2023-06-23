@@ -29,7 +29,7 @@ Chris
 </div>
 
 <div abs-bl mx-13 my-12 flex="~ col" text-sm text-left>
-  <div>Porsche Share Meeting</div>
+  <div>Share Meeting</div>
   <div text-sm opacity-50>June 14th, 2023</div>
 </div>
 
@@ -1391,9 +1391,11 @@ growY: 10
 
 <div v-show="$slidev.nav.clicks === 2" v-click="2" key='vgt-2'>
 
+<!-- @unocss-skip-start -->
 ```html
-<button class="p-\(x-4 y-2) text-\(xl red) rounded hover-\(bg-red text-white) ···">Button</button>
+<button class="p-(x-4 y-2) text-(xl red) rounded hover-(bg-red text-white) ···">Button</button>
 ```
+<!-- @unocss-skip-end -->
 
 清晰阅读，易维护
 
