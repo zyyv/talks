@@ -3,14 +3,15 @@ import { presetUseful } from 'unocss-preset-useful'
 
 export default defineConfig({
   presets: [
-    presetUseful() as any,
-    presetWebFonts({
-      provider: 'google',
-      fonts: {
-        sans: 'Roboto',
-        mono: ['Fira Code', 'Fira Mono:400,700'],
-      },
-      inlineImports: true,
+    presetUseful({
+      webFonts: {
+        provider: 'google',
+        fonts: {
+          sans: 'Roboto',
+          mono: ['Fira Code', 'Fira Mono:400,700'],
+        },
+        inlineImports: true,
+      }
     }),
   ],
   shortcuts: [
