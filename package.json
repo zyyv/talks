@@ -9,20 +9,20 @@
     "update": "esno scripts/redirects.ts"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.42.0",
-    "@iconify/json": "^2.2.115",
-    "@slidev/cli": "^0.43.3",
-    "@slidev/theme-default": "^0.21.2",
-    "@types/node": "^20.3.1",
-    "@unocss/core": "^0.55.7",
-    "eslint": "^8.43.0",
-    "esno": "^0.17.0",
-    "fast-glob": "^3.2.12",
-    "pnpm": "^8.7.5",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.1.3",
-    "unocss": "^0.55.7",
-    "unocss-preset-useful": "^0.2.5"
+    "@antfu/eslint-config": "^2.13.2",
+    "@iconify/json": "^2.2.199",
+    "@slidev/cli": "^0.48.8",
+    "@slidev/theme-default": "^0.25.0",
+    "@types/node": "^20.12.6",
+    "@unocss/core": "^0.59.0",
+    "eslint": "^9.0.0",
+    "esno": "^4.7.0",
+    "fast-glob": "^3.3.2",
+    "pnpm": "^8.15.6",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.4",
+    "unocss": "^0.59.0",
+    "unocss-preset-useful": "^0.4.1"
   },
   "eslintConfig": {
     "extends": "@antfu"
